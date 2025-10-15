@@ -227,7 +227,10 @@
 										"typeProperties": {
 											"source": {
 												"type": "AzureDatabricksDeltaLakeSource",
-												"query": ""
+												"query": {
+													"value": "@concat('select coalesce(cast(max(loaddate) as date),''',\n'1900-01-01',''') as last_fetched_date from audit.load_logs where',' data_source=''', item().datasource,'''andtablename=''', item().tablename,'''')",
+													"type": "Expression"
+												}
 											},
 											"dataset": {
 												"referenceName": "AzureDatabricksDeltaLake_Dataset",
@@ -238,6 +241,40 @@
 												}
 											}
 										}
+									},
+									{
+										"name": "incremental_load",
+										"type": "Copy",
+										"dependsOn": [
+											{
+												"activity": "Fetch_logs",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"timeout": "0.12:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"source": {
+												"type": "AzureSqlSource",
+												"queryTimeout": "02:00:00",
+												"partitionOption": "None"
+											},
+											"enableStaging": false
+										},
+										"inputs": [
+											{
+												"referenceName": "generic_sql_ls",
+												"type": "DatasetReference"
+											}
+										]
 									}
 								],
 								"ifTrueActivities": [
