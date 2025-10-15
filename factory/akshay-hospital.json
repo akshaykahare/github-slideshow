@@ -1,0 +1,9 @@
+{
+	"name": "akshay-hospital",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "4a8f6624-acca-406d-b32d-1c487fe92e48",
+		"tenantId": "f6ed0415-9549-4b1a-a9da-700d148e970b"
+	}
+}
