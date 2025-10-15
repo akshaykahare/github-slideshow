@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "akshay-hospital"
+		},
+		"AzureDataLakeStorage1_ls_accountKey": {
+			"value": ""
+		},
+		"AzureDatabricksDeltaLake_ls_accessToken": {
+			"value": ""
+		},
+		"hosa_sql_linkedService_password": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_ls_properties_typeProperties_url": {
+			"value": "https://ak0adls0dev0sa.dfs.core.windows.net/"
+		},
+		"hosa_sql_linkedService_properties_typeProperties_server": {
+			"value": "akshay-sqlserver.database.windows.net"
+		},
+		"hosa_sql_linkedService_properties_typeProperties_database": {
+			"value": "@{linkedService().db_name}"
+		},
+		"hosa_sql_linkedService_properties_typeProperties_userName": {
+			"value": "akshay"
+		}
+	}
+}
