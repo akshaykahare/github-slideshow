@@ -192,6 +192,25 @@
 									}
 								]
 							}
+						},
+						{
+							"name": "If Condition2",
+							"type": "IfCondition",
+							"dependsOn": [
+								{
+									"activity": "If Condition1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@equals(item().loadtype, 'Full')\n",
+									"type": "Expression"
+								}
+							}
 						}
 					]
 				}
