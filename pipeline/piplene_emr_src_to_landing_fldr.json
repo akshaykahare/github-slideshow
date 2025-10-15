@@ -30,9 +30,30 @@
 						"referenceName": "generic_adls_flat_file_dataset",
 						"type": "DatasetReference",
 						"parameters": {
-							"file_name": "laod_config.csv",
-							"file_path": "emr"
+							"file_name": "load_config.csv",
+							"file_path": "emr",
+							"container": "configs"
 						}
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "lkp_EMR_configs",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('lkp_EMR_configs').output.value",
+						"type": "Expression"
 					}
 				}
 			}
