@@ -55,6 +55,7 @@
 						"value": "@activity('lkp_EMR_configs').output.value",
 						"type": "Expression"
 					},
+					"isSequential": true,
 					"activities": [
 						{
 							"name": "fileExists",
@@ -351,7 +352,7 @@
 											"source": {
 												"type": "AzureDatabricksDeltaLakeSource",
 												"query": {
-													"value": "@concat(\"insert into audit.load_logs(data_source,tablename, numberofrowscopied,watermarkcolumnname,loaddate) values (''',item().datasource,''',''',item().tablename,''',''',activity('incremental_load').output.rowscopied,''', ''',item().watermark,''',''',utcNow(),''')')",
+													"value": "@concat(\n    'insert into audit.load_logs(data_source,tablename,numberofrowscopied,watermarkcolumnname,loaddate) values (''',\n    item().datasource, ''', ''',\n    item().tablename, ''', ',\n    activity('incremental_load').output.rowsCopied, ', ''',\n    item().watermark, ''', ''',\n    utcNow(), ''')'\n)\n",
 													"type": "Expression"
 												}
 											},
