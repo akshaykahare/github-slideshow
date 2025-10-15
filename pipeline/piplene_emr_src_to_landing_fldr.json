@@ -312,7 +312,11 @@
 										"userProperties": [],
 										"typeProperties": {
 											"source": {
-												"type": "AzureDatabricksDeltaLakeSource"
+												"type": "AzureDatabricksDeltaLakeSource",
+												"query": {
+													"value": "@concat('insert into\naudit.load_logs(data_source,tablename,numberofrowscopied,watermarkcolu\nmnname,loaddate) values (''',item().datasource,''',\n''',item().tablename,''',''',activity('full_load_cp').output.rowscopied,''',''',item().watermark,''',''',utcNow(),''')')",
+													"type": "Expression"
+												}
 											},
 											"dataset": {
 												"referenceName": "AzureDatabricksDeltaLake_Dataset",
