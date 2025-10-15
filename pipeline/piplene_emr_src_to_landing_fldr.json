@@ -286,6 +286,40 @@
 												}
 											}
 										]
+									},
+									{
+										"name": "Fetch",
+										"type": "Lookup",
+										"dependsOn": [
+											{
+												"activity": "IncrementalLoad",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"timeout": "0.12:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"source": {
+												"type": "AzureDatabricksDeltaLakeSource",
+												"query": " @concat('select *,''',item().datasource,''' as datasource from\n',item().tablename,' where ',item().watermark,' >=\n''',activity('Fetch_logs').output.firstRow.last_fetched_date,'''')"
+											},
+											"dataset": {
+												"referenceName": "AzureDatabricksDeltaLake_Dataset",
+												"type": "DatasetReference",
+												"parameters": {
+													"schema_name": "'aa'",
+													"table_name": "'aa'"
+												}
+											}
+										}
 									}
 								],
 								"ifTrueActivities": [
