@@ -288,7 +288,7 @@
 										]
 									},
 									{
-										"name": "Fetch",
+										"name": "Fetch_logs",
 										"type": "Lookup",
 										"dependsOn": [
 											{
@@ -309,7 +309,7 @@
 										"typeProperties": {
 											"source": {
 												"type": "AzureDatabricksDeltaLakeSource",
-												"query": " @concat('select *,''',item().datasource,''' as datasource from\n',item().tablename,' where ',item().watermark,' >=\n''',activity('Fetch_logs').output.firstRow.last_fetched_date,'''')"
+												"query": ""
 											},
 											"dataset": {
 												"referenceName": "AzureDatabricksDeltaLake_Dataset",
