@@ -289,6 +289,43 @@
 												}
 											}
 										]
+									},
+									{
+										"name": "Lookup1",
+										"type": "Lookup",
+										"dependsOn": [
+											{
+												"activity": "full_load_cp",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"timeout": "0.12:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"source": {
+												"type": "ParquetSource",
+												"storeSettings": {
+													"type": "AzureBlobFSReadSettings",
+													"recursive": true,
+													"enablePartitionDiscovery": false
+												},
+												"formatSettings": {
+													"type": "ParquetReadSettings"
+												}
+											},
+											"dataset": {
+												"referenceName": "generic_adls_parquet_dataset",
+												"type": "DatasetReference"
+											}
+										}
 									}
 								]
 							}
