@@ -1,6 +1,42 @@
 {
-	"name": "lkp_EMR_configs",
+	"name": "piplene_emr_src_to_landing_fldr",
 	"properties": {
+		"activities": [
+			{
+				"name": "lkp_EMR_configs",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "generic_adls_flat_file_dataset",
+						"type": "DatasetReference",
+						"parameters": {
+							"file_name": "laod_config.csv",
+							"file_path": "emr"
+						}
+					}
+				}
+			}
+		],
 		"annotations": []
 	}
 }
