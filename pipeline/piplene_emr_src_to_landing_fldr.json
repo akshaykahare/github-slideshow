@@ -87,6 +87,7 @@
 								"fieldList": [],
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
@@ -311,18 +312,10 @@
 										"userProperties": [],
 										"typeProperties": {
 											"source": {
-												"type": "ParquetSource",
-												"storeSettings": {
-													"type": "AzureBlobFSReadSettings",
-													"recursive": true,
-													"enablePartitionDiscovery": false
-												},
-												"formatSettings": {
-													"type": "ParquetReadSettings"
-												}
+												"type": "AzureDatabricksDeltaLakeSource"
 											},
 											"dataset": {
-												"referenceName": "generic_adls_parquet_dataset",
+												"referenceName": "AzureDatabricksDeltaLake_Dataset",
 												"type": "DatasetReference"
 											}
 										}
