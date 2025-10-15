@@ -316,7 +316,11 @@
 											},
 											"dataset": {
 												"referenceName": "AzureDatabricksDeltaLake_Dataset",
-												"type": "DatasetReference"
+												"type": "DatasetReference",
+												"parameters": {
+													"schema_name": "'aa'",
+													"table_name": "'aa'"
+												}
 											}
 										}
 									}
