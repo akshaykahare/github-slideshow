@@ -349,7 +349,11 @@
 										"userProperties": [],
 										"typeProperties": {
 											"source": {
-												"type": "AzureDatabricksDeltaLakeSource"
+												"type": "AzureDatabricksDeltaLakeSource",
+												"query": {
+													"value": "@concat(\"insert into audit.load_logs(data_source,tablename, numberofrowscopied,watermarkcolumnname,loaddate) values (''',item().datasource,''',''',item().tablename,''',''',activity('incremental_load').output.rowscopied,''', ''',item().watermark,''',''',utcNow(),''')')",
+													"type": "Expression"
+												}
 											},
 											"dataset": {
 												"referenceName": "AzureDatabricksDeltaLake_Dataset",
